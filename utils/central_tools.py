@@ -229,56 +229,11 @@ class CentralTool(DataTool, ModelTool):
                         batch_contents["which"] = self.args.which
                     else:
                         batch_contents["latent_sequence"] = az_contents['inputs']
-                    ####
 
-                    # if self.dynamics_model is not None:
-                    #     batch_contents["latent_sequence"] = self.dynamics_model.step(az_contents, initial_states=dynamics_initial_states, which=self.args.which)
-                    # else:
-                    #     batch_contents["latent_sequence"] = az_contents['inputs']
-            # print(batch_contents['frames_ids'][0])
-            # print(batch_contents['frames_ids'][0][0])
-            # if batch_contents['frames_ids'][0][0] > 371.:
-            #     print("aha!")
-# import glob
-# im_list = sorted(glob.glob('../gaussian_observation_maps/data/robot/rss_new/setup_five/3/*.jpg'))
-# im_list = sorted(np.genfromtxt(directory+'../gaussian_observation_maps/data/robot/rss_new/setup_five/reduced_im_list.txt', dtype='str').tolist())
-# from scipy.misc import imresize as resize
-# import matplotlib.pyplot as plt
-# import cv2
-# im = cv2.imread(im_list[4])
-# frame = im[20:-70, 56:-70]
-# frame = frame.astype(np.uint8)
-# frame = resize(frame, (64, 64))
-# frame = ((1.0 - frame) * 255).round().astype(np.uint8)
-# frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            #### NEW modified #####
             error, state_h, trues_, velocities, accuracy = self.model.step(
                 batch_contents,
                 initial_states=initial_states,
                 error_type=self.args.error_type)
-            #####
-
-            # all_seq_states.append(state_h)
-            # all_velocities.append(velocities)
-            # labels = []
-            # for vel in velocities:
-            #     if vel[0] > -0.009 and vel[0] < 0.009 and vel[1] > -0.009 and vel[1] < 0.009:
-            #         labels.append('stay')
-            #     else:
-            #         if vel[0] + vel[1] <= 0:
-            #             labels.append("->")
-            #         else:
-            #             labels.append("<-")
-
-            #     # if (vel[0] > -0.009 and vel[0] < -0.005 or vel[0] < 0.009 and vel[0] > 0.005):
-            #     #     if vel[1] > -0.009 and vel[1] < -0.005 or vel[1] < 0.009 and vel[1] > 0.005:
-            #     #         print("opa, a toq stoi li... ")
-            #     #         # this seems like the loitering stage..
-
-            # frame_no.append(batch_contents['frames_ids'])
-            # all_labels.append(labels)
-            # for tr in trues_:
-            #     blqk.append(tr)
 
             if accuracy != accuracy:
                 raise Exception('accuracy should not be nan.')
@@ -346,30 +301,10 @@ class CentralTool(DataTool, ModelTool):
 
         temp_args = self.args
 
-        # self.args = self.args._replace(set_dtype='per_agent')
         self.args = self.args._replace(observed_length=4)
         self.args = self.args._replace(predicted_length=4)
         self.args = self.args._replace(batch_size=10)
-        # self.data = [
-        #     'data/eth/hotel/pixel_pos.csv',
-        #     'data/eth/univ/pixel_pos.csv',
-        #     'data/ucy/zara/zara01/pixel_pos.csv',
-        #     'data/ucy/zara/zara02/pixel_pos.csv']
-        # assert len(self.data.frames_list) == 0
-        # assert np.array(self.data.all_data).shape == (890, )
-        # assert np.array(self.data.all_data[0]).shape == (14,3) # Do I need this indexing ..?
-        # assert np.array(self.data.all_data[1]).shape == (26,3)
-        # assert np.array(self.data.all_data[-1]).shape == (12,3)
-        # assert np.sum([np.array(self.data.all_data[i]).shape for i in range(len(self.data.all_data))], axis=0).tolist() == [25249, 2670]
-        # # [390, 750, 898, 1102] - sequences with all trajectories and not only those long enough
-        # assert self.data.end_instance == [251, 543, 689, 890]
-        # assert len(self.batch_loader) == 480 # num batches
 
-        # self.args = self.args._replace(
-        #     set_dtype='per_frame',
-        #     sequence_length=8,
-        #     latent_size=self.args.latent_size,
-        #     batch_size=10)
         self.data = ['data/eth/hotel/pixel_pos.csv']
         assert len(self.data.frames_list) == 1
         assert len(self.data.frames_list[0]) == 1168

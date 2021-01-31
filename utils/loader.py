@@ -248,45 +248,6 @@ class PerFrameLoader(DataLoader):
         test_traj = np.zeros((9, 40, 3))
         result_traj = np.zeros((9, 40, 3))
 
-        # test_traj[0, 1, :] = [1, 0.25, 0.75]
-        # test_traj[1, 1, :] = [1, 0.26, 0.74]
-        # test_traj[2, 1, :] = [1, 0.27, 0.73]
-        # test_traj[3, 1, :] = [1, 0.28, 0.72]
-        # test_traj[4, 1, :] = [1, 0.29, 0.71]
-        # test_traj[5, 1, :] = [1, 0.30, 0.70]
-
-        # tempo = test_traj[test_traj[:, 1, 0] == 1, 1, :]
-        # because the trajectory is smaller than 8!
-        # result_traj[1:6, 1, 1:] = tempo[1:, 1:] - tempo[:-1, 1:]
-
-        # test_traj[0, 2, :] = [2, 0.35, 0.65]
-        # test_traj[1, 2, :] = [2, 0.36, 0.64]
-        # test_traj[2, 2, :] = [2, 0.37, 0.63]
-        # test_traj[3, 2, :] = [2, 0.38, 0.62]
-        # test_traj[4, 2, :] = [2, 0.39, 0.61]
-        # test_traj[5, 2, :] = [2, 0.30, 0.60]
-
-        # tempo = test_traj[test_traj[:, 2, 0] == 2, 2, :]
-        # because the trajectory is smaller than 8!
-        # result_traj[1:6, 2, 1:] = tempo[1:, 1:] - tempo[:-1, 1:]
-
-        # This scenario is assumed to be removed
-        # during data preparation ... BUT I AM NOT SURE
-        # (should be I think I checked a long time ago)!
-        # test_traj[0, 3, :] = [3, 0.15, 0.65]
-        # test_traj[1, 3, :] = [3, 0.16, 0.64]
-
-        # test_traj[3, 3, :] = [3, 0.68, 0.32]
-        # test_traj[4, 3, :] = [3, 0.69, 0.31]
-        # test_traj[5, 3, :] = [3, 0.60, 0.30]
-        # test_traj[6, 3, :] = [3, 0.61, 0.29]
-        # test_traj[7, 3, :] = [3, 0.62, 0.29]
-
-        # tempo = test_traj[test_traj[:, 3, 0] == 3, 3, :]
-        # tempo = tempo[2:]
-        # result_traj[4:8, 3, 1:] = tempo[1:, 1:] - tempo[:-1, 1:]
-        # END
-
         test_traj[0, 3, :] = [3, 0.15, 0.65]
         test_traj[1, 3, :] = [3, 0.16, 0.64]
         test_traj[2, 3, :] = [3, 0.46, 0.44]

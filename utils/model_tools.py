@@ -115,18 +115,8 @@ class ModelTool(object):
             return BasicLSTM(self.hps, self.rnd)
         elif name == 'map_cond_per_frame_LSTM':
             return MapCond3LSTM(self.hps, self.rnd)
-        elif name == 'map_cond_per_frame_LSTM_softmax':
-            return MapCond3LSTMSoftmax(self.hps, self.rnd)
         elif name == 'per_frame_social_LSTM':
             return SocialLSTM(self.hps, self.rnd)
-        elif name == 'per_frame_classify_LSTM':
-            return JustLSTMClassify(self.hps, self.rnd)
-        elif name == 'per_frame_vc_LSTM':
-            return VcLSTM(self.hps, self.rnd)
-        elif name == 'per_frame_foxy_vc_LSTM':
-            return FoxyVcLSTM(self.hps, self.rnd)
-        # elif name == 'dilated_conv':
-        #     return Model(self.hps, self.rnd)
 
     def chooseDynamicsModel(self, name):
         if name == 'mdn_rnn':
