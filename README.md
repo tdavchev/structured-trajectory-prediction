@@ -17,8 +17,8 @@ This repository relies on python 3.6 and Tensorflow 1.*. It is the associated co
 
 [Set up and activate an Anaconda environment](https://github.com/CSTR-Edinburgh/mlpractical/blob/mlp2017-8/master/notes/environment-set-up.md), then run the following commands:
 ```
-git clone git@github.com:yadrimz/Trajectory_Prediction_Framework.git
-cd Trajectory_Prediction_Framework
+git clone git@github.com:yadrimz/structured-trajectory-prediction.git
+cd structured-trajectory-prediction
 conda create -n traj python=3.6
 conda activate traj
 pip install -r requirements.txt
