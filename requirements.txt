@@ -1,0 +1,12 @@
+tensorflow==1.15.0
+cython
+PyHamcrest
+numpy>=1.10.4
+matplotlib
+opencv-python
+ipdb
+scipy==1.1.0
+seaborn
+scikit-learn
+imageio
+scikit-image
