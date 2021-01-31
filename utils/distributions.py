@@ -161,58 +161,6 @@ def get_mean_error(predicted_traj, true_traj, observed_length, max_num_agents):
     # Return the mean error
     return np.mean(error)
 
-# This is too complicated, it takes into account both per_frame and per_agent and it also
-# does some weird stuff for differently preprocessed data ...
-# def get_mean_error(predicted_traj, true_traj, observed_length, max_num_agents, per_frame=True):
-#     '''
-#     Function that computes the mean euclidean distance error between the
-#     predicted and the true trajectory
-#     params:
-#     predicted_traj : numpy matrix with the points of the predicted trajectory
-#     true_traj : numpy matrix with the points of the true trajectory
-#     observed_length : The length of trajectory observed
-#     taken from: https://github.com/vvanirudh/social-lstm-tf
-#     '''
-#     # The data structure to store all errors
-#     error = np.zeros(len(true_traj) - observed_length)
-#     # For each point in the predicted part of the trajectory
-#     for i in range(observed_length, len(true_traj)):
-#         # The predicted position
-#         pred_pos = predicted_traj[i, :]
-#         # The true position
-#         true_pos = true_traj[i, :]
-#         timestep_error = 0
-#         counter = 0
-#         for j in range(max_num_agents):
-#             if true_pos.shape[-1] > 2 and per_frame and true_pos[j, 0] == 0.0:
-#                 continue
-#             elif true_pos.shape[-1] > 2 and per_frame and pred_pos[j, 0] == 0.0:
-#                 continue
-#             elif true_pos.shape[-1] > 2:
-#                 if true_pos[j, 1] > 1.0 or per_frame and true_pos[j, 1] < 0.0:
-#                     continue
-#                 elif true_pos[j, 2] > 1.0 or per_frame and true_pos[j, 2] < 0.0:
-#                     continue
-
-#                 # The euclidean distance is the error
-#                 timestep_error += np.sum((true_pos[j, [1, 2]] - pred_pos[j, [1, 2]]) ** 2)#np.linalg.norm(true_pos[j, [1, 2]] - pred_pos[j, [1, 2]])
-#                 counter += 1
-#             else:
-#                 if true_pos[0] > 1.0 or true_pos[0] < 0.0:
-#                     continue
-#                 elif true_pos[1] > 1.0 or true_pos[1] < 0.0:
-#                     continue
-
-#                 # The euclidean distance is the error
-#                 timestep_error += np.sum((true_pos[[0, 1]] - pred_pos[[0, 1]]) ** 2)#np.linalg.norm(true_pos[j, [1, 2]] - pred_pos[j, [1, 2]])
-#                 counter += 1
-
-#         if counter != 0:
-#             error[i - observed_length] = timestep_error / counter
-
-#     # Return the mean error
-#     return np.mean(error)
-
 def get_rms_step_error(predicted_map, true_map):
     '''
     Function that computes the mean euclidean distance error between the
